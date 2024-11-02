@@ -18,8 +18,11 @@ import java.util.Objects;
 @Table(name = User.TABLE_NAME)
 
 public class User {
-    public interface CreateUser {}
-    public interface UpdateUser {}
+    public interface CreateUser {
+    }
+
+    public interface UpdateUser {
+    }
 
     public static final String TABLE_NAME = "user";
 
@@ -35,12 +38,12 @@ public class User {
     private String username;
 
     @Column(name = "password", length = 60, nullable = false)
-    @NotNull(groups = {CreateUser.class, UpdateUser.class})
-    @NotEmpty(groups = {CreateUser.class, UpdateUser.class})
-    @Size(groups = {CreateUser.class, UpdateUser.class}, min = 8, max = 60)
+    @NotNull(groups = { CreateUser.class, UpdateUser.class })
+    @NotEmpty(groups = { CreateUser.class, UpdateUser.class })
+    @Size(groups = { CreateUser.class, UpdateUser.class }, min = 8, max = 60)
     private String password;
 
-    //private List<Task> tasks = new ArrayList<Task>();
+    // private List<Task> tasks = new ArrayList<Task>();
 
     public User() {
     }
@@ -50,7 +53,6 @@ public class User {
         this.username = username;
         this.password = password;
     }
-
 
     public Long getId() {
         return this.id;
@@ -77,7 +79,7 @@ public class User {
     }
 
     @Override
-    public boolean equals(Object obj){
+    public boolean equals(Object obj) {
         if (obj == this)
             return true;
         if (obj == null)
@@ -101,4 +103,4 @@ public class User {
         result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
         return result;
     }
- }
+}
