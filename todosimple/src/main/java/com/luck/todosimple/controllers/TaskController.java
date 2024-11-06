@@ -1,6 +1,7 @@
 package com.luck.todosimple.controllers;
 
 import java.net.URI;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -34,6 +35,12 @@ public class TaskController {
         return ResponseEntity.ok(obj);
     }
 
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Task>> findAllByUserId(@PathVariable Long userId){
+        List<Task> objs =  this.taskService.findAllByUserId(userId);
+        return ResponseEntity.ok().body(objs);
+    }
+
     @PostMapping
     @Validated
     public ResponseEntity<Void> create(@Valid @RequestBody Task obj){
@@ -56,5 +63,4 @@ public class TaskController {
         return ResponseEntity.noContent().build();
     }
 
-    
 }
