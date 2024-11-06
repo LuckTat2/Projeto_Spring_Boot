@@ -47,15 +47,16 @@ public class UserController {
 
     @PutMapping("/{id}")
     @Validated(UpdateUser.class)
-    public ResponseEntity<Void> udpate(@Valid @ResponseBody User obj, @PathVariable Long id){
+    public ResponseEntity<Void> udpate(@Valid @RequestBody User obj, @PathVariable Long id){
         obj.setId(id);
         this.userService.update(obj);
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> delete(){
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        this.userService.delete(id);
+        return ResponseEntity.noContent().build();
     } 
 
 }
